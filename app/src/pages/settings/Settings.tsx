@@ -223,16 +223,27 @@ export default function Settings() {
       ),
       children: <AppearanceSettings />,
     },
-    {
-      key: 'warehouses',
-      label: (
-        <span>
-          <HomeOutlined style={{ marginRight: 8 }} />
-          {t('settingsPage.warehouses')}
-        </span>
-      ),
-      children: <WarehouseSettings />,
-    },
+    // ⚠️ UN ONGLET SANS SERVEUR EN FACE N'EST PAS UNE OFFRE, C'EST UNE PANNE.
+    // Les entrepôts appartiennent au stock, la boutique au pont WooCommerce :
+    // sans leur module, leurs routes n'existent pas, et ces deux onglets
+    // s'ouvraient sur des requêtes en 404. Le menu, lui, continue de proposer
+    // les modules absents — c'est là que l'offre se fait, pas ici.
+    ...(amsbmBoot.modules?.stock !== false
+      ? [
+          {
+            key: 'warehouses',
+            label: (
+              <span>
+                <HomeOutlined style={{ marginRight: 8 }} />
+                {t('settingsPage.warehouses')}
+              </span>
+            ),
+            children: <WarehouseSettings />,
+          },
+        ]
+      : []),
+    ...(amsbmBoot.modules?.woocommerce !== false
+      ? [
     {
       key: 'woocommerce',
       label: (
@@ -245,6 +256,8 @@ export default function Settings() {
       ),
       children: <WooCommerceSettings />,
     },
+        ]
+      : []),
     {
       key: 'stripe',
       label: (

@@ -12,7 +12,7 @@ import {
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
-import { dashboardAPI, stockAPI } from '@/services/api'
+import { amsbmBoot, dashboardAPI, stockAPI } from '@/services/api'
 import { useDocumentTabsStore, StaticTabType } from '@/stores/documentTabsStore'
 import { useAuthStore } from '@/stores/authStore'
 import { usePermissionStore } from '@/stores/permissionStore'
@@ -139,7 +139,11 @@ export default function Dashboard() {
       const response = await stockAPI.getAlerts()
       return response.data
     },
-    enabled: canFetch,
+    // ⚠️ SEULEMENT SI LE STOCK EST LIVRÉ. Sans son module, la route n'existe
+    // pas : le tableau de bord la demandait quand même, recevait un 404 à
+    // chaque ouverture, et l'écran restant ouvert dans les onglets, à chaque
+    // écran suivant aussi.
+    enabled: canFetch && amsbmBoot.modules?.stock !== false,
   })
 
   const stats = statsData || {

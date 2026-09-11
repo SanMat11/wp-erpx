@@ -3,7 +3,7 @@ import { Table, Button, Modal, Form, Input, Select, InputNumber, Checkbox, messa
 import { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import type { ColumnsType } from 'antd/es/table'
 import { useTranslation } from 'react-i18next'
-import { CLE_TAUX_TVA, settingsAPI } from '@/services/api'
+import { CLE_TAUX_TVA, settingsAPI, amsbmBoot } from '@/services/api'
 import { comptaAPI } from '@/services/comptaApi'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { europeanCountries } from './CompanySettings'
@@ -34,6 +34,10 @@ export default function VATSettings() {
   const { data: comptes } = useQuery({
     queryKey: ['compta.comptes.full'],
     queryFn: () => comptaAPI.listComptes({ page_size: 500 }),
+    // Le plan comptable vit dans le module de comptabilité : sans lui, la route
+    // n'existe pas et la demander ne rendait qu'un 404. Le choix du compte reste
+    // simplement vide.
+    enabled: amsbmBoot.modules?.compta !== false,
     staleTime: 5 * 60 * 1000,
   })
   // ⚠️ NE PAS CODER UN PLAN COMPTABLE DANS UN ÉCRAN.
