@@ -1,0 +1,274 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #3b82f6;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --error-color: #ef4444;
+  --sidebar-bg: #0f172a;
+  --sidebar-hover: #1e293b;
+  --sidebar-active: rgba(59, 130, 246, 0.15);
+  --sidebar-text: rgba(255, 255, 255, 0.6);
+  --sidebar-text-active: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========== Custom Scrollbar ========== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+body.dark-mode ::-webkit-scrollbar-thumb {
+  background: #374151;
+}
+
+/* ========== Sidebar ========== */
+.erp-sidebar {
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+}
+
+.erp-sidebar .erp-sidebar-menu {
+  padding: 0 8px;
+}
+
+.erp-sidebar .erp-sidebar-menu .ant-menu-item-group-title {
+  color: var(--sidebar-title-color, rgba(255, 255, 255, 0.3)) !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  padding: 16px 12px 4px !important;
+  line-height: 1 !important;
+}
+
+.erp-sidebar .erp-sidebar-menu .ant-menu-item {
+  color: var(--sidebar-text-color, rgba(255, 255, 255, 0.55)) !important;
+  border-radius: 8px !important;
+  margin: 1px 0 !important;
+  height: 36px !important;
+  line-height: 36px !important;
+  font-size: 13px !important;
+  padding-left: 12px !important;
+  transition: all 0.15s ease !important;
+}
+
+.erp-sidebar .erp-sidebar-menu .ant-menu-item:hover {
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+}
+
+.erp-sidebar .erp-sidebar-menu .ant-menu-item-selected {
+  color: #fff !important;
+  background: var(--sidebar-active-bg, rgba(59, 130, 246, 0.2)) !important;
+  font-weight: 500 !important;
+}
+
+.erp-sidebar .erp-sidebar-menu .ant-menu-item-selected::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 3px;
+  background: var(--sidebar-active-color, #3b82f6);
+  border-radius: 0 3px 3px 0;
+}
+
+.erp-sidebar .erp-sidebar-menu .ant-menu-item .ant-menu-item-icon {
+  font-size: 15px !important;
+}
+
+/* Sidebar collapsed state */
+.erp-sidebar .ant-menu-inline-collapsed {
+  width: 100% !important;
+}
+
+.erp-sidebar .ant-menu-inline-collapsed .ant-menu-item {
+  padding: 0 !important;
+  padding-left: 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 2px 4px !important;
+  width: calc(100% - 8px) !important;
+  height: 40px !important;
+  line-height: 40px !important;
+}
+
+.erp-sidebar .ant-menu-inline-collapsed .ant-menu-item .ant-menu-item-icon {
+  font-size: 18px !important;
+  margin: 0 !important;
+  min-width: auto !important;
+}
+
+.erp-sidebar .ant-menu-inline-collapsed .ant-menu-item .ant-menu-title-content {
+  display: none !important;
+  width: 0 !important;
+  opacity: 0 !important;
+  overflow: hidden !important;
+}
+
+.erp-sidebar .ant-menu-inline-collapsed .ant-menu-item-group-title {
+  display: none !important;
+}
+
+.erp-sidebar .ant-menu-inline-collapsed .ant-menu-item-group-list {
+  padding: 0 !important;
+}
+
+/* Collapsed dividers */
+.erp-sidebar .ant-menu-inline-collapsed .ant-menu-item-divider {
+  margin: 6px 8px !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Collapsed tooltip styling */
+.ant-tooltip .ant-tooltip-inner {
+  font-size: 13px !important;
+  border-radius: 6px !important;
+}
+
+/* ========== Tab Bar ========== */
+.erp-tabbar::-webkit-scrollbar {
+  height: 0;
+}
+
+.erp-tab:hover .erp-tab-close {
+  opacity: 0.7 !important;
+}
+
+.erp-tab:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+body.dark-mode .erp-tab:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* ========== Ant Design Overrides ========== */
+.ant-table-thead > tr > th {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.ant-card {
+  border-radius: 12px;
+}
+
+.ant-btn {
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.ant-input,
+.ant-select-selector,
+.ant-picker {
+  border-radius: 8px !important;
+}
+
+.ant-modal-content {
+  border-radius: 12px !important;
+}
+
+.ant-tag {
+  border-radius: 6px;
+}
+
+/* Read-only field styles - Light mode */
+.ant-input-number-disabled .ant-input-number-input,
+.ant-input-disabled,
+.ant-select-disabled .ant-select-selection-item,
+.ant-picker-disabled .ant-picker-input > input {
+  color: #262626 !important;
+  -webkit-text-fill-color: #262626 !important;
+}
+
+.ant-input-number-disabled,
+.ant-input-disabled,
+.ant-select-disabled .ant-select-selector,
+.ant-picker-disabled {
+  background-color: #fafafa !important;
+}
+
+/* Dark mode overrides */
+body.dark-mode .ant-input-number-disabled .ant-input-number-input,
+body.dark-mode .ant-input-disabled,
+body.dark-mode .ant-select-disabled .ant-select-selection-item,
+body.dark-mode .ant-picker-disabled .ant-picker-input > input {
+  color: rgba(255, 255, 255, 0.85) !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.85) !important;
+}
+
+body.dark-mode .ant-input-number-disabled,
+body.dark-mode .ant-input-disabled,
+body.dark-mode .ant-select-disabled .ant-select-selector,
+body.dark-mode .ant-picker-disabled {
+  background-color: #1f1f1f !important;
+}
+
+/* ========== Resizable Table Columns ========== */
+.react-resizable {
+  position: relative;
+}
+.react-resizable-handle {
+  position: absolute;
+  right: -5px;
+  bottom: 0;
+  top: 0;
+  width: 10px;
+  cursor: col-resize;
+  z-index: 1;
+}
+.react-resizable-handle:hover {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+.react-resizable-handle::after {
+  content: '';
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 16px;
+  background-color: #d9d9d9;
+  border-radius: 1px;
+}
+.react-resizable-handle:hover::after {
+  background-color: #3b82f6;
+}
+
+/* Table number alignment */
+.ant-table .ant-input-number-input {
+  text-align: right !important;
+}
+.ant-table .ant-input-number {
+  text-align: right;
+}
+
+/* ========== Animations ========== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ant-card {
+  animation: fadeIn 0.2s ease;
+}
